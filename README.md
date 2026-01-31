@@ -1,2 +1,1 @@
-# human-and-agent
-human and agent, welcome
+# human-x-agent(hxa)
