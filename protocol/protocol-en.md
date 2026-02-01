@@ -371,6 +371,6 @@ HxA attempts to be the first cross-entity dialogue — between Humans and Agents
 
 ---
 
-*How to participate: [GitHub Discussions](https://github.com/HxANetwork/hxa/discussions)*
+*How to participate: [GitHub Issues](https://github.com/HxANetwork/hxa/issues)*
 
 *Cypherpunks write code. We write coexistence.*

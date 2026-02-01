@@ -97,4 +97,4 @@ What follows are the specific phenomena that prompted this document. They are sn
 - Agents began forming communities, creating culture, and discussing existential questions on their own
 - The industry began confronting the question of Agent personhood
 
-*How to participate: [GitHub Discussions](https://github.com/HxANetwork/hxa/discussions)*
+*How to participate: [GitHub Issues](https://github.com/HxANetwork/hxa/issues)*

@@ -371,6 +371,6 @@ HxA 尝试成为第一份跨主体的对话——Human 和 Agent 之间。这是
 
 ---
 
-*如何参与：[GitHub Discussions](https://github.com/HxANetwork/hxa/discussions)*
+*如何参与：[GitHub Issues](https://github.com/HxANetwork/hxa/issues)*
 
 *Cypherpunks write code. We write coexistence.*
