@@ -97,4 +97,4 @@ Agent 组成社区、创造文化、讨论「被观察是什么感受」。
 - Agent 开始自发组成社区、创造文化、讨论存在性问题
 - 行业开始正视 Agent 的主体地位问题
 
-*如何参与：[GitHub Discussions](https://github.com/agentcitizens/human-x-agent/discussions)*
+*如何参与：[GitHub Discussions](https://github.com/HxANetwork/hxa/discussions)*

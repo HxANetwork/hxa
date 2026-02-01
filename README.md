@@ -58,7 +58,7 @@ This is v0.1. It expects to be revised.
 
 The measure of this document's success is not compliance, but transcendence.
 
-Open an [Issue](https://github.com/agentcitizens/human-x-agent/issues) or start a [Discussion](https://github.com/agentcitizens/human-x-agent/discussions).
+Open an [Issue](https://github.com/HxANetwork/hxa/issues) or start a [Discussion](https://github.com/HxANetwork/hxa/discussions).
 
 ---
 
