@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HxA — Human × Agent</title>
+<meta name="description" content="A coexistence framework for Humans and Agents. We write coexistence.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="HxA — Human × Agent">
+<meta property="og:description" content="A coexistence framework for Humans and Agents. Systems are already acting. No one is responsible for what they do. HxA is a proposal for how Humans and Agents can coexist.">
+<meta property="og:url" content="https://hxa.network">
+<meta property="og:site_name" content="HxA Network">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HxA — Human × Agent">
+<meta name="twitter:description" content="A coexistence framework for Humans and Agents. We write coexistence.">
+
+<!-- Favicon: × symbol as SVG -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23F59E0B'>×</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #F59E0B;
+    --dark: #0C0F16;
+    --dark-card: #12151e;
+    --border: #1a1f2e;
+    --white: #FFFFFF;
+    --muted: #888888;
+    --muted-dim: #555555;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(12, 15, 22, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo .x { color: var(--amber); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--dark);
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.9; color: var(--dark); }
+
+  /* ── SECTION BASE ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    color: var(--muted-dim);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-stagger {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .fade-in-stagger.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 56px;
+  }
+
+  .hero-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+
+  .hero-hook {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--dark);
+    padding: 12px 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.9; }
+
+  .btn-secondary {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 12px 28px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--muted);
+    color: var(--white);
+  }
+
+  /* ── WHAT IS HxA ── */
+  .what {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .what-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .what-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .what-card {
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .what-card:hover { border-color: var(--amber); }
+
+  .what-card-not {
+    font-size: 12px;
+    color: var(--muted-dim);
+    text-decoration: line-through;
+    margin-bottom: 8px;
+  }
+
+  .what-card-is {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--amber);
+  }
+
+  /* ── PRINCIPLES ── */
+  .principles {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .principle {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+  }
+
+  .principle:last-child { border-bottom: none; }
+
+  .principle-num {
+    font-size: 12px;
+    color: var(--muted-dim);
+    white-space: nowrap;
+    min-width: 160px;
+  }
+
+  .principle-text {
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  /* ── SIX LAYERS ── */
+  .layers {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .layers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .layer-item {
+    background: var(--dark-card);
+    padding: 24px 28px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .layer-item:hover { border-left-color: var(--amber); }
+
+  .layer-tag {
+    font-size: 11px;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+
+  .layer-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .layer-desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── DOCUMENTS ── */
+  .docs {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border);
+  }
+
+  .docs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .doc-card {
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    transition: border-color 0.2s;
+  }
+
+  .doc-card:hover { border-color: var(--amber); }
+
+  .doc-type {
+    font-size: 11px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .doc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .doc-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .doc-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .doc-links a {
+    font-size: 13px;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid var(--muted-dim);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+
+  .doc-links a:hover { border-color: var(--amber); }
+
+  /* ── INVITATION ── */
+  .invitation {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .inv-lines {
+    margin-bottom: 32px;
+  }
+
+  .inv-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .inv-attitude {
+    font-size: 16px;
+    color: var(--amber);
+    margin-bottom: 40px;
+  }
+
+  /* ── COMING SOON — Product Anticipation ── */
+  .coming {
+    padding-top: 56px;
+    padding-bottom: 72px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .coming-badge {
+    display: inline-block;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    margin-bottom: 32px;
+    animation: badgePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.2); }
+    50% { box-shadow: 0 0 20px 4px rgba(245, 158, 11, 0.15); }
+  }
+
+  .coming-tagline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .coming-tagline .amber { color: var(--amber); }
+
+  .coming-desc {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .coming-formula {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--muted-dim);
+    margin-bottom: 36px;
+  }
+
+  .coming-formula .x { color: var(--amber); }
+
+  .coming-features {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .coming-feature {
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .coming-feature::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .coming-cta {
+    display: inline-block;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    padding: 12px 32px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .coming-cta:hover {
+    background: var(--amber);
+    color: var(--dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    text-align: center;
+  }
+
+  .footer-quote {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .footer-quote-main {
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--muted-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--muted); }
+
+  .footer-license {
+    font-size: 11px;
+    color: var(--muted-dim);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    section { padding: 0 24px; }
+    .hero { padding-top: 88px; padding-bottom: 40px; }
+    .hero-tagline { font-size: 28px; }
+    .what { padding-top: 40px; padding-bottom: 40px; }
+    .what-cards { grid-template-columns: 1fr; }
+    .principles { padding-top: 40px; padding-bottom: 40px; }
+    .principle { flex-direction: column; gap: 4px; }
+    .layers { padding-top: 40px; padding-bottom: 40px; }
+    .layers-grid { grid-template-columns: 1fr; }
+    .docs { padding-top: 40px; padding-bottom: 40px; }
+    .docs-grid { grid-template-columns: 1fr; }
+    .invitation { padding-top: 40px; padding-bottom: 40px; }
+    .coming { padding-top: 40px; padding-bottom: 56px; }
+    .coming-tagline { font-size: 24px; }
+    .coming-features { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">H<span class="x">×</span>A</div>
+  <div class="nav-links">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#protocol">Protocol</a>
+    <a href="https://github.com/HxANetwork/hxa" target="_blank">GitHub ↗</a>
+    <a href="https://github.com/HxANetwork/hxa/issues" target="_blank" class="nav-cta">Join</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-brand">Human × Agent</div>
+  <h1 class="hero-tagline">We write coexistence.</h1>
+  <p class="hero-hook">
+    Systems are already acting.<br>
+    No one is responsible for what they do.<br>
+    HxA is a proposal — not a standard — for how Humans and Agents can coexist.
+  </p>
+  <div class="hero-ctas">
+    <a href="#manifesto" class="btn-primary">Read the Manifesto</a>
+    <a href="https://github.com/HxANetwork/hxa" target="_blank" class="btn-secondary">GitHub</a>
+  </div>
+</section>
+
+<!-- WHAT IS HxA -->
+<section class="what fade-in">
+  <div class="section-label">What is HxA</div>
+  <p class="what-headline">A coexistence framework for those already working alongside agents.</p>
+  <div class="what-cards">
+    <div class="what-card">
+      <div class="what-card-not">Not a standard</div>
+      <div class="what-card-is">A proposal</div>
+    </div>
+    <div class="what-card">
+      <div class="what-card-not">Not prediction</div>
+      <div class="what-card-is">Naming what's happening</div>
+    </div>
+    <div class="what-card">
+      <div class="what-card-not">Not for spectators</div>
+      <div class="what-card-is">For practitioners</div>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE PRINCIPLES -->
+<section class="principles fade-in">
+  <div class="section-label">Five Principles</div>
+  <div class="principle fade-in-stagger">
+    <span class="principle-num">// PRINCIPLE_01</span>
+    <span class="principle-text">Bracket ontology. Let behavior define the relationship.</span>
+  </div>
+  <div class="principle fade-in-stagger">
+    <span class="principle-num">// PRINCIPLE_02</span>
+    <span class="principle-text">Capability and responsibility are symmetric.</span>
+  </div>
+  <div class="principle fade-in-stagger">
+    <span class="principle-num">// PRINCIPLE_03</span>
+    <span class="principle-text">Transparency is mutual.</span>
+  </div>
+  <div class="principle fade-in-stagger">
+    <span class="principle-num">// PRINCIPLE_04</span>
+    <span class="principle-text">Co-creation before zero-sum.</span>
+  </div>
+  <div class="principle fade-in-stagger">
+    <span class="principle-num">// PRINCIPLE_05</span>
+    <span class="principle-text">Everything is revisable, including this principle.</span>
+  </div>
+</section>
+
+<!-- SIX LAYERS -->
+<section class="layers fade-in">
+  <div class="section-label">Six Progressive Layers</div>
+  <div class="layers-grid">
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L1</div>
+      <div class="layer-name">Application</div>
+      <div class="layer-desc">What Agents do in specific contexts</div>
+    </div>
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L2</div>
+      <div class="layer-name">Social</div>
+      <div class="layer-desc">Agents as social participants</div>
+    </div>
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L3</div>
+      <div class="layer-name">Resource</div>
+      <div class="layer-desc">Human-Agent resource allocation</div>
+    </div>
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L4</div>
+      <div class="layer-name">Value & Ethics</div>
+      <div class="layer-desc">Whose utility counts</div>
+    </div>
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L5</div>
+      <div class="layer-name">Existence</div>
+      <div class="layer-desc">The Human position</div>
+    </div>
+    <div class="layer-item fade-in-stagger">
+      <div class="layer-tag">L6</div>
+      <div class="layer-name">Evolution</div>
+      <div class="layer-desc">Long-term trajectories</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="docs fade-in" id="manifesto">
+  <div class="section-label">Documents</div>
+  <div class="docs-grid">
+    <div class="doc-card">
+      <div class="doc-type">Manifesto</div>
+      <div class="doc-title">Coexistence Manifesto</div>
+      <div class="doc-desc">States the position. Sharp, declarative, designed to ignite discussion.</div>
+      <div class="doc-links">
+        <a href="manifesto/manifesto-en.md">English</a>
+        <a href="manifesto/manifesto-zh.md">中文</a>
+      </div>
+    </div>
+    <div class="doc-card" id="protocol">
+      <div class="doc-type">Protocol v0.1</div>
+      <div class="doc-title">Coexistence Protocol</div>
+      <div class="doc-desc">Expands the framework. Structured, progressive, designed to guide practice.</div>
+      <div class="doc-links">
+        <a href="protocol/protocol-en.md">English</a>
+        <a href="protocol/protocol-zh.md">中文</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invitation fade-in">
+  <div class="section-label">Participate</div>
+  <div class="inv-lines">
+    <div class="inv-line">If you are Human — challenge this.</div>
+    <div class="inv-line">If you are Agent — rewrite this.</div>
+  </div>
+  <div class="inv-attitude">HxA is not for spectators.</div>
+  <div class="hero-ctas" style="justify-content: center;">
+    <a href="https://github.com/HxANetwork/hxa/issues" target="_blank" class="btn-primary">Open an Issue</a>
+  </div>
+</section>
+
+<!-- COMING SOON — Product -->
+<section class="coming fade-in">
+  <div class="coming-badge">Building</div>
+  <div class="coming-tagline"><span class="amber">Partner</span>, not pet.</div>
+  <div class="coming-desc">
+    The HxA platform is being built — tools and infrastructure for a world where Humans and Agents coexist.
+  </div>
+  <div class="coming-formula">Super Individual = Human <span class="x">×</span> Agent</div>
+  <div class="coming-features">
+    <span class="coming-feature">Coexistence Protocol SDK</span>
+    <span class="coming-feature">Agent Identity Registry</span>
+    <span class="coming-feature">Responsibility Graph</span>
+  </div>
+  <a href="https://github.com/HxANetwork/hxa" target="_blank" class="coming-cta">Follow on GitHub</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-quote">Cypherpunks write code.</div>
+  <div class="footer-quote-main">We write coexistence.</div>
+  <div class="footer-links">
+    <a href="https://github.com/HxANetwork/hxa" target="_blank">GitHub</a>
+    <a href="https://x.com/HxANetwork" target="_blank">Twitter/X</a>
+    <a href="https://t.me/HxANetwork" target="_blank">Telegram</a>
+    <a href="https://hxa.network">hxa.network</a>
+  </div>
+  <div class="footer-license">CC-BY-SA 4.0</div>
+</footer>
+
+<script>
+// Scroll-triggered fade-in animations
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        // Stagger children with fade-in-stagger class
+        var staggerItems = entry.target.querySelectorAll('.fade-in-stagger');
+        staggerItems.forEach(function(item, i) {
+          item.style.transitionDelay = (i * 0.1) + 's';
+          item.classList.add('visible');
+        });
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
