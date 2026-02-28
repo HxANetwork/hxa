@@ -1,5 +1,7 @@
 # Human × Agent (HxA)
 
+> **HxA** (pronounced "Hexa") — Human × Agent
+
 **A Coexistence Framework for Humans and Agents**
 
 Systems are already acting. No one is responsible for what they do.
